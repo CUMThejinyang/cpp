@@ -74,7 +74,7 @@ bool isExistsInFile(string proname, set<string> set1){
 
 
 void printNameInfo(set<string> set1){
-    cout << "ÒÑ¾­´æÔÚµÄÏîÄ¿ÃûÈçÏÂ:" <<endl;
+    cout << "å·²ç»å­˜åœ¨çš„é¡¹ç›®åå¦‚ä¸‹:" <<endl;
     cout << "------------------------------------------------------------" << endl;
     for (set<string>::iterator it = set1.begin(); it != set1.end();it++){
         cout << *it << endl;
@@ -102,42 +102,35 @@ int main(int argc, char *argv[]) {
     auto v1 = split(v.at(v.size() - 1), '.');
     string proName = v1.at(0);
     char ch;
-    ifstream ff(proPath + "/CmakeLists.txt");
+    
     auto set1 = getNameSet(proPath);
-
-
-
     if (isExistsInFile(proName, set1)) {
         printNameInfo(set1);
-        cout << "ÒÑ¾­´æÔÚÏàÍ¬ÏîÄ¿Ãû"<< proName << " È·¶¨ÒªÖØÐÂÃüÃûÂð?<y/n>";
+        cout << "å·²ç»å­˜åœ¨ç›¸åŒé¡¹ç›®å"<< proName << " ç¡®å®šè¦é‡æ–°å‘½åå—?<y/n>";
         cin >> ch;
         if (ch == 'y' || ch == 'Y') {
-            cout << "ÇëÊäÈëÐÂµÄÏîÄ¿Ãû:";
+            cout << "è¯·è¾“å…¥æ–°çš„é¡¹ç›®å:";
             while (true) {
                cin >> proName;
-               cout << "ÐÂµÄÏîÄ¿ÃûÊÇ:" << proName << endl;
+               cout << "æ–°çš„é¡¹ç›®åæ˜¯:" << proName << endl;
                if (!isExistsInFile(proName, set1)){
-                   cout << "±¾´Î¸ü¸ÄÏîÄ¿Ãû³É¹¦" << endl;
+                   cout << "æœ¬æ¬¡æ›´æ”¹é¡¹ç›®åæˆåŠŸ" << endl;
                    break;
                }else{
-                   cout << "ÊäÈëÖØÃû, ÇëÖØÐÂÊäÈë:";
+                   cout << "è¾“å…¥é‡å, è¯·é‡æ–°è¾“å…¥:";
                }
             }
         }else{
-            cout << "Ìí¼ÓÊ§°Ü" << endl;
+            cout << "æ·»åŠ å¤±è´¥" << endl;
             return -1;
         }
     }
-    ff.close();
-
-
-
 
     fstream fo(proPath + "/CmakeLists.txt", ios::app | ios::out);
     fo << "add_executable(" << proName <<  " \"" << filePath << "\")" << endl;
     fo.flush();
     fo.close();
-    cout << proName << "Ìí¼Ó³É¹¦" << endl;
+    cout << proName << "æ·»åŠ æˆåŠŸ" << endl;
 
 
 
