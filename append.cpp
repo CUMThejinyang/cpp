@@ -62,6 +62,7 @@ set<string> getNameSet(string proPath){
         proname = getProName(s);
         set1.insert(proname);
     }
+    fi.close();
     return set1;
 }
 
